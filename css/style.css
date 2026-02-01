@@ -1,0 +1,557 @@
+body {
+    margin: 0;
+    background-color: #f5f5f5;
+    color: #262626;
+    font-family: 'IBM Plex Sans JP', sans-serif;
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+    text-align: center;
+  }
+
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #f5f5f5;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+.logo {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Righteous', sans-serif;
+  }
+
+.nav-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+.nav-menu li {
+  margin-left: 2rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #262626;
+  font-weight: 500;
+  font-family: 'Righteous', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* ハンバーガー */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+/* トップ */
+  .hero {
+    position: relative;
+    height: 100vh;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .hero-text {
+    display: inline-block;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #262626;
+    font-family: 'Kosugi Maru', sans-serif;
+    will-change: transform, filter, opacity;
+    animation: heroIn 900ms cubic-bezier(.2,.8,.2,1) both;
+  }
+
+/* Cベース：ループ（通常は“呼吸”） */
+.hero-text-inner{
+  display: inline-block;
+  will-change: transform;
+  animation: heroBreath 4.8s ease-in-out infinite;
+}
+
+/* --- 入場（PC/通常） --- */
+@keyframes heroIn{
+  from{ opacity: 0; transform: translateY(16px); filter: blur(6px); }
+  to  { opacity: 1; transform: translateY(0);  filter: blur(0); }
+}
+
+/* --- ループ（PC/通常：呼吸） --- */
+@keyframes heroBreath{
+  0%,100%{ transform: translateY(0) scale(1); }
+  50%    { transform: translateY(-6px) scale(1.015); }
+}
+
+/* ----------------------------
+   モバイル縦書き：スッと流れる
+   ---------------------------- */
+@media (max-width: 768px){
+  /* 入場を“横からスッ”に */
+  .hero-text{
+    animation: heroInSide 800ms cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes heroInSide{
+    from{ opacity: 0; transform: translateX(18px); filter: blur(6px); }
+    to  { opacity: 1; transform: translateX(0);  filter: blur(0); }
+  }
+
+  /* ループを“流れ続ける”マイクロモーションに（linearでスッと） */
+  .hero-text-inner{
+    animation: heroFlow 6.5s linear infinite;
+  }
+  @keyframes heroFlow{
+    0%   { transform: translateX(0); }
+    50%  { transform: translateX(-10px); }
+    100% { transform: translateX(0); }
+  }
+}
+
+/* 動きを減らす設定の端末向け */
+@media (prefers-reduced-motion: reduce) {
+  .hero-text, .hero-text-inner { animation: none !important; }
+}
+
+  /* PCでは改行を消して1行にする */
+  .hero-text br {
+    display: none;
+  }
+
+  .hero img {
+    width: 100%;
+    max-width: 70vw;
+  }
+
+/* デザインセクション */
+  .works-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    justify-items: center;
+    margin-top: 2rem;
+  }
+
+  .work-item {
+    display: flex;
+    flex-direction: column;
+    /* aspect-ratio: 1 / 1; /* ← 正方形にする */
+    max-width: 300px;
+    background-color: #fff;
+    border: 3px solid #262626;
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: left;
+    text-decoration: none;
+    color: #262626;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .work-item p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 行数制限 */
+    -webkit-box-orient: vertical;
+  }
+
+.work-item:hover {
+    transform: scale(1.03);
+  }
+
+  .work-item img {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  .work-item .label {
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 0.5rem;
+  }
+
+  .work-item .title {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-top: 0.3rem;
+  }
+
+  /* スキル */
+  .skills ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .skills li {
+    margin: 0.5rem 0;
+    letter-spacing: 0.04em;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* プロフィール */
+  .profile {
+    max-width: 768px;
+    margin: 0 auto;
+  }
+
+  .profile p {
+    text-align: left;
+    letter-spacing: 0.04em;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.8;
+  }
+
+  /* 横並びにするラッパー */
+  .profile-paragraphs {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  /* 各段落の幅制御 */
+  .profile-paragraphs p {
+    flex: 1 1 45%;
+    max-width: 500px;
+  }
+
+  .profile-icon {
+    width: 96px;
+    height: 96px;
+    display: block;
+    margin: 0 auto 1.5rem;
+    object-fit: contain;
+  }
+
+  /* LIKEコンテンツ */
+  .likes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* どの環境でも必ず2列 */
+    gap: 1.5rem;
+    /* ここが重要：PCでも広がりすぎないように制限＆中央寄せ */
+    width: min(768px, 100%);
+    margin: 1.5rem auto 0; /* 上余白 + 中央寄せ */
+    justify-items: stretch;
+  }
+
+
+  .like-item {
+    position: relative;
+    background: #fff;
+    border: 3px solid #262626;
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .like-item:hover {
+    transform: scale(1.05);
+  }
+
+  .like-item img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  .like-item .plus {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 1rem;
+    background: #262626;
+    color: #fff;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* モーダル */
+  .like-modal {
+    display: none;
+    position: fixed;
+    inset: 0;                 /* left/top/right/bottom をまとめて指定 */
+    z-index: 999;
+    background: rgba(0,0,0,0.6);
+    display: none;            /* 通常は非表示 */
+    justify-content: center;
+    align-items: center;
+    padding: 16px;            /* 端末が小さくても余白を確保 */
+    box-sizing: border-box;
+  }
+
+
+  .like-modal-content {
+    background: #fff;
+    border: 3px solid #262626;
+    border-radius: 16px;
+    position: relative;
+    text-align: center;
+    width: min(560px, 100%);                /* どの端末でも収まる */
+    max-height: calc(100vh - 32px);         /* 画面からはみ出さない */
+    overflow: auto;                          /* はみ出したら中でスクロール */
+    -webkit-overflow-scrolling: touch;
+    padding: 48px 24px 24px;                /* 上に閉じるボタン分の余白 */
+  }
+
+  .like-modal-content img {
+    width: min(320px, 80vw);
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .like-modal-content h4 {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .like-modal-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    text-align: left;
+  }
+
+  /* 閉じるボタン */
+  .close-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    border: 3px solid #262626;
+    background: #262626;
+    color: #fff;
+    font-size: 1.6rem;
+    cursor: pointer;
+  }
+
+  .close-btn:hover {
+    background: #262626;
+    color: #fff;
+  }
+
+  h2 {
+    font-family: 'Righteous', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h3 {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .works-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .works-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 768px) {
+  .hero-text {
+    writing-mode: vertical-rl;
+    -webkit-writing-mode: vertical-rl; /* iOS Safari対策 */
+    text-orientation: mixed;
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    letter-spacing: 0.2em;
+    line-height: 4rem;
+  }
+
+  .hero-text br {
+    display: block;
+  }
+  
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    width: 100%;
+    text-align: right;
+    padding: 1rem 2rem;
+  }
+
+  .nav-menu.open {
+    display: block;
+  }
+
+  .nav-menu ul {
+    flex-direction: column;
+  }
+
+  .nav-menu li {
+    margin: 1rem 0;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .profile-paragraphs {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .profile-paragraphs p {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .skills li {
+  text-align: left;
+  }
+
+  .profile-icon {
+    width: 76px;
+    height: 76px;
+    margin-bottom: 1.25rem;
+  }
+  }
+
+/* -----------------------------
+  Footer
+------------------------------ */
+  .site-footer {
+    background: #262626;
+    color: #fff;
+    padding: 3rem 1rem;
+  }
+
+  .footer-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    text-align: center;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: 'Righteous', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.06em;
+  }
+
+  .footer-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .25rem;
+    line-height: 1.8;
+  }
+
+  .footer-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Righteous', sans-serif;
+    font-size: 0.95rem;
+    opacity: 0.95;
+  }
+
+  .footer-nav a:hover {
+    opacity: 1;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+
+  .footer-nav .sep {
+    opacity: 0.5;
+    margin: 0 .25rem;
+  }
+
+  .footer-copy {
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    opacity: 0.85;
+  }
+
+  /* -----------------------------
+    Back to top button
+  ------------------------------ */
+  .back-to-top {
+    position: fixed;
+    right: 18px;
+    bottom: 18px;
+    z-index: 1000;
+
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+
+    border: 3px solid #262626;
+    background: #fff;
+    color: #262626;
+
+    display: grid;
+    place-items: center;
+
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease;
+  }
+
+  .back-to-top.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+  }
+
+  .back-to-top:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  /* Mobile */
+  @media (max-width: 768px) {
+    .site-footer {
+      padding: 2.5rem 1rem;
+    }
+
+    .footer-logo {
+      font-size: 1.4rem;
+    }
+
+    .footer-nav a {
+      font-size: 0.9rem;
+    }
+
+    .back-to-top {
+      right: 14px;
+      bottom: 14px;
+      width: 48px;
+      height: 48px;
+    }
+  }
