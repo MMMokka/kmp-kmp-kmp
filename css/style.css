@@ -54,6 +54,12 @@ body {
   border: none;
   font-size: 2rem;
   cursor: pointer;
+  color: #262626;    
+  -webkit-appearance: none;
+  appearance: none;
+  padding: 0;
+  line-height: 1;
+  -webkit-tap-highlight-color: transparent; 
 }
 
 /* トップ */
