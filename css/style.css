@@ -137,12 +137,10 @@ body {
     display: none;
   }
 
-  .work-item img {
-      width: 100%;
-      height: auto;      /* ←重要：縦横比を固定 */
-      display: block;    /* ←余計な隙間/計算ズレ防止 */
-      border-radius: 8px;
-    }
+  .hero img {
+    width: 100%;
+    max-width: 70vw;
+  }
 
 /* デザインセクション */
   .works-grid {
