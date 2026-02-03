@@ -76,12 +76,13 @@ body {
 
   .hero-text {
     display: inline-block;
-    font-size: 3rem;
+    font-size: 5rem;
     font-weight: bold;
     color: #262626;
-    font-family: 'Kosugi Maru', sans-serif;
+    font-family: 'Darumadrop One', sans-serif;
     will-change: transform, filter, opacity;
     animation: heroIn 900ms cubic-bezier(.2,.8,.2,1) both;
+    letter-spacing: 0.2em;
   }
 
 /* Cベース：ループ（通常は“呼吸”） */
@@ -392,9 +393,9 @@ body {
     writing-mode: vertical-rl;
     -webkit-writing-mode: vertical-rl; /* iOS Safari対策 */
     text-orientation: mixed;
-    font-size: clamp(2.4rem, 10vw, 3.2rem);
-    letter-spacing: 0.2em;
+    font-size: clamp(2.4rem, 10vw, 2.4rem);
     line-height: 4rem;
+    letter-spacing: o;
   }
 
   .hero-text br {
